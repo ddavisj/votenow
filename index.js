@@ -1,16 +1,26 @@
-// Much easier to use CommonJS "require" with Express
-// Cant use ES2015 import statements w server side modules: import express from 'express'
 const express = require('express');
+const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const keys = require('./config/keys');
+require('./models/User');
+require('./services/passport');
 
-// Create the Ex app:
+mongoose.connect(keys.mongoURI);
+
 const app = express();
 
-// Create the route:
-app.get('/', (req, res) => {
-   // res.send({ hi: 'there' });
-   res.send('<h1>Deploy again!</h1>');
-});
+app.use(
+   cookieSession({
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      keys: [keys.cookieKey],
+   })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./routes/authRoutes')(app); // end of T31
 
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT);
