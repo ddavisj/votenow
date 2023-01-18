@@ -1,5 +1,7 @@
 // prod.js - prod keys here!
 
+// These keys are saved in Railway/Heroku..
+
 module.exports = {
    googleClientID: process.env.GOOGLE_CLIENT_ID,
    googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
