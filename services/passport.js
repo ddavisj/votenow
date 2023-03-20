@@ -79,7 +79,7 @@ passport.use(
             return done(null, existingUser);
          }
 
-         const user = await new User({ googleId: profile.id }).save();
+         const user = await new User({ googleId: profile.id }).save(); //T72
          done(null, user);
       }
    )
