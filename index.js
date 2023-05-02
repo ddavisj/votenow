@@ -5,9 +5,8 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
-// const path = require('path');
-
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
@@ -27,11 +26,12 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app); // end of T31
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app); // T136
 
 if (process.env.NODE_ENV === 'production') {
    // Express will serve up prodn assets
    // like our main.js or main.css files
-   app.use(express.static('client/build')); // Commented this as got an error..
+   app.use(express.static('client/build'));
 
    // app.use(express.static(path.join(__dirname, 'client/build')));
 
