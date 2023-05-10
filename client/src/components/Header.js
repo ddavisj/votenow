@@ -16,16 +16,16 @@ class Header extends Component {
             );
          default: // otherwise, we're in!
             return [
-               <li key="1">
+               <li key="1" something="1">
                   <Payments />
                </li>,
                <li key="3" style={{ margin: '0 10px' }}>
-                  Credits: {this.props.auth.credits}
+                  ${this.props.auth.credits}
                </li>,
-               <li key="4">
-                  {/* -- I added this!! */}
-                  <Link to="/funkify">F</Link>
-               </li>,
+               // <li key="4">
+               //    {/* -- I added this!! */}
+               //    <Link to="/funkify">F</Link>
+               // </li>,
                <li key="2">
                   <a href="/api/logout">Logout</a>
                </li>,
@@ -38,6 +38,7 @@ class Header extends Component {
          <nav>
             <div className="nav-wrapper">
                <Link
+                  style={{ paddingLeft: '10px' }}
                   to={this.props.auth ? '/surveys' : '/'}
                   className="left brand-logo"
                >
@@ -53,8 +54,5 @@ class Header extends Component {
 function mapStateToProps({ auth }) {
    return { auth };
 }
-// function mapStateToProps(state, { auth }) {
-//    return { state, auth };
-// }
 
 export default connect(mapStateToProps)(Header);
