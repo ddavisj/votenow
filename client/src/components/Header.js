@@ -19,14 +19,10 @@ class Header extends Component {
                <li key="1" something="1">
                   <Payments />
                </li>,
-               <li key="3" style={{ margin: '0 10px' }}>
+               <li key="2" style={{ margin: '0 10px' }}>
                   ${this.props.auth.credits}
                </li>,
-               // <li key="4">
-               //    {/* -- I added this!! */}
-               //    <Link to="/funkify">F</Link>
-               // </li>,
-               <li key="2">
+               <li key="3">
                   <a href="/api/logout">Logout</a>
                </li>,
             ];
@@ -35,14 +31,14 @@ class Header extends Component {
 
    render() {
       return (
-         <nav>
+         <nav style={{ backgroundColor: 'green' }}>
             <div className="nav-wrapper">
                <Link
                   style={{ paddingLeft: '10px' }}
                   to={this.props.auth ? '/surveys' : '/'}
                   className="left brand-logo"
                >
-                  Emaily
+                  VoteNow
                </Link>
                <ul className="right">{this.renderContent()}</ul>
             </div>

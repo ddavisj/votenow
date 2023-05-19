@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_SURVEYS } from './types';
+import { FETCH_USER, FETCH_SURVEYS, DELETE_SURVEY } from './types';
 
 export const fetchUser = () => async dispatch => {
    const res = await axios.get('/api/current_user');
@@ -25,3 +25,19 @@ export const fetchSurveys = () => async dispatch => {
 
    dispatch({ type: FETCH_SURVEYS, payload: res.data });
 };
+
+export const deleteSurvey = id => async dispatch => {
+   await axios.delete(`/api/surveys/delete/${id}`);
+
+   dispatch({ type: DELETE_SURVEY, payload: id });
+   // await axios.delete(`/api/surveys/delete/${id}`);
+   // history.push('/surveys');
+};
+
+// For comparison:
+// export const deleteBook = id => async dispatch => {
+//    await myBooks.delete(`/books/${id}`);
+
+//    dispatch({ type: DELETE_BOOK, payload: id });
+//    history.push('/');
+// };

@@ -1,0 +1,12 @@
+<script>
+
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+// `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+   
+const charge = await stripe.charges.create({
+   amount: 2000,
+   currency: 'usd',
+   source: 'tok_visa',
+   description:
+      'My First Test Charge (created for API docs at https://www.stripe.com/docs/api)',
+});
