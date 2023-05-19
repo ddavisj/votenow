@@ -33,6 +33,32 @@ module.exports = app => {
 
    app.get('/api/surveys/:surveyId/:choice', (req, res) => {
       res.send(`Thanks for voting!`);
+      // res.send(`
+      //    <html lang="en">
+      //    <head>
+      //       <meta charset="UTF-8" />
+      //       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      //       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      //       <link
+      //          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      //          rel="stylesheet"
+      //       />
+      //       <title>VoteNow - Thanks</title>
+      //    </head>
+      //    <body>
+      //       <nav style="background-color: green">
+      //          <div class="nav-wrapper">
+      //             <a
+      //                class="left brand-logo"
+      //                href="/surveys"
+      //                style="padding-left: 10px"
+      //                >VoteNow</a
+      //             >
+      //          </div>
+      //       </nav>
+      //       <h3 style="text-align: center">Thanks for voting!</h3>
+      //    </body>
+      // </html>`);
    });
 
    app.post('/api/surveys/webhooks', (req, res) => {
