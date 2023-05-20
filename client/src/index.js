@@ -15,6 +15,9 @@ import reducers from './reducers';
 // window.axios = axios;
 // window._ = _;
 
+const { Path } = require('path-parser');
+window.Path = Path;
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(

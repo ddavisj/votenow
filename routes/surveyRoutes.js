@@ -64,11 +64,16 @@ module.exports = app => {
    app.post('/api/surveys/webhooks', (req, res) => {
       const p = new Path('/api/surveys/:surveyId/:choice');
 
-      _.chain(req.body) // process the incoming req
+      _.chain(req.body) // process the incoming req body and chain on all steps
          .map(({ email, url }) => {
+            // get email and url from the incoming event array
             // destruct from event
-            const match = p.test(new URL(url).pathname);
+            const match = p.test(new URL(url).pathname); // get pathname prop from url via helper
+            console.log('match', match);
+
             if (match) {
+               // if pathname acquired
+               // console.log('pathname (match): ', match);
                return { email, ...match };
             }
          })
@@ -80,13 +85,11 @@ module.exports = app => {
                   id: surveyId,
                   recipients: {
                      $elemMatch: { email: email, responded: false },
-                     lastResponded: new Date(),
                   },
                },
                {
                   $inc: { [choice]: 1 },
                   $set: { 'recipients.$.responded': true },
-                  lastResponded: new Date(),
                }
             ).exec();
          })
