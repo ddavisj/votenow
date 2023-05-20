@@ -33,78 +33,8 @@ module.exports = app => {
 
    app.get('/api/surveys/:surveyId/:choice', (req, res) => {
       res.send(`Thanks for voting!`);
-      // res.send(`
-      //    <html lang="en">
-      //    <head>
-      //       <meta charset="UTF-8" />
-      //       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      //       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      //       <link
-      //          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      //          rel="stylesheet"
-      //       />
-      //       <title>VoteNow - Thanks</title>
-      //    </head>
-      //    <body>
-      //       <nav style="background-color: green">
-      //          <div class="nav-wrapper">
-      //             <a
-      //                class="left brand-logo"
-      //                href="/surveys"
-      //                style="padding-left: 10px"
-      //                >VoteNow</a
-      //             >
-      //          </div>
-      //       </nav>
-      //       <h3 style="text-align: center">Thanks for voting!</h3>
-      //    </body>
-      // </html>`);
    });
 
-   // COPY
-   app.post('/api/surveys/webhooksTEST', (req, res) => {
-      // console.log(req.body);
-      // res.send({});
-
-      const p = new Path('/api/surveys/:surveyId/:choice');
-
-      _.chain(req.body) // process the incoming req body and chain on all steps
-         .map(({ email, url }) => {
-            // get email and url from the incoming event array
-            // destruct from event
-            const match = p.test(new URL(url).pathname); // get pathname prop from url via helper
-            console.log('match', match);
-
-            if (match) {
-               // if pathname acquired
-               // console.log('pathname (match): ', match);
-               return { email, ...match };
-            }
-         })
-         .compact()
-         .uniqBy('email', 'surveyId')
-         // .each(({ surveyId, email, choice }) => {
-         .each(event => {
-            // Survey.updateOne(
-            //    {
-            //       id: surveyId,
-            //       recipients: {
-            //          $elemMatch: { email: email, responded: false },
-            //       },
-            //    },
-            //    {
-            //       $inc: { [choice]: 1 },
-            //       $set: { 'recipients.$.responded': true },
-            //    }
-            // ).exec();
-            console.log('event', event);
-         })
-         .value();
-
-      res.send({});
-   });
-
-   // ORIG!!
    app.post('/api/surveys/webhooks', (req, res) => {
       console.log('req.body', req.body);
 
