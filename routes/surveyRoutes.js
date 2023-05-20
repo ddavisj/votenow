@@ -62,6 +62,11 @@ module.exports = app => {
    });
 
    app.post('/api/surveys/webhooks', (req, res) => {
+      console.log(req.body);
+      res.send({});
+   });
+
+   app.post('/api/surveys/webhooksX', (req, res) => {
       const p = new Path('/api/surveys/:surveyId/:choice');
 
       _.chain(req.body) // process the incoming req body and chain on all steps
