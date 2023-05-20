@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+const bodyParser = require('body-parser');
+const requireHttps = require('./middlewares/requireHttps');
 
 require('./models/User');
 require('./models/Survey');
@@ -14,6 +15,7 @@ mongoose.connect(keys.mongoURI);
 const app = express();
 
 app.use(bodyParser.json()); // provides req.body property
+app.use(requireHttps);
 app.use(
    cookieSession({
       maxAge: 30 * 24 * 60 * 60 * 1000,

@@ -1,38 +1,78 @@
-import React from 'react';
+// import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SurveyList from './surveys/SurveyList';
 // import * as actions from '../actions';
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
-// class Dashboard extends Component {
-//    componentDidMount() {
-//       this.props.fetchSurveys();
-//    }
+class Dashboard extends Component {
+   showLink() {
+      if (this.props.auth) {
+         if (this.props.auth.credits < 1) {
+            return (
+               <h4 style={{ textAlign: 'center', paddingTop: '20px' }}>
+                  <span
+                     style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                     onClick={() => {
+                        document.querySelector('button').click();
+                     }}
+                  >
+                     Buy credits
+                  </span>{' '}
+                  to send your first survey!
+               </h4>
+            );
+         }
+      }
+      return;
+   }
 
-//    render(state) {
-//       console.log(state);
-//       return <div></div>;
-//    }
-// }
+   showAddButton() {
+      if (this.props.auth) {
+         if (this.props.auth.credits) {
+            return (
+               <div className="fixed-action-btn">
+                  <Link
+                     to="/surveys/new"
+                     className="btn-floating btn-large green"
+                  >
+                     <i className="material-icons">add</i>
+                  </Link>
+               </div>
+            );
+         }
+      }
+      return;
+   }
 
-// function mapStateToProps(state) {
-//    return state;
-// }
-
-// export default connect(mapStateToProps)(Dashboard);
-
-const Dashboard = () => {
-   return (
-      <div>
-         <SurveyList />
-         <div className="fixed-action-btn">
-            <Link to="/surveys/new" className="btn-floating btn-large green">
-               <i className="material-icons">add</i>
-            </Link>
+   render() {
+      return (
+         <div>
+            {this.showLink()}
+            <SurveyList />
+            {this.showAddButton()}
          </div>
-      </div>
-   );
-};
+      );
+   }
+}
 
-export default Dashboard;
+function mapStateToProps({ auth }) {
+   return { auth };
+}
+
+export default connect(mapStateToProps)(Dashboard);
+
+// const Dashboard = () => {
+//    return (
+//       <div>
+//          <SurveyList />
+//          <div className="fixed-action-btn">
+//             <Link to="/surveys/new" className="btn-floating btn-large green">
+//                <i className="material-icons">add</i>
+//             </Link>
+//          </div>
+//       </div>
+//    );
+// };
+
+// export default Dashboard;
