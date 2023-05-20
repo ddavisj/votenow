@@ -61,12 +61,53 @@ module.exports = app => {
       // </html>`);
    });
 
-   app.post('/api/surveys/webhooks', (req, res) => {
-      console.log(req.body);
+   // COPY
+   app.post('/api/surveys/webhooksTEST', (req, res) => {
+      // console.log(req.body);
+      // res.send({});
+
+      const p = new Path('/api/surveys/:surveyId/:choice');
+
+      _.chain(req.body) // process the incoming req body and chain on all steps
+         .map(({ email, url }) => {
+            // get email and url from the incoming event array
+            // destruct from event
+            const match = p.test(new URL(url).pathname); // get pathname prop from url via helper
+            console.log('match', match);
+
+            if (match) {
+               // if pathname acquired
+               // console.log('pathname (match): ', match);
+               return { email, ...match };
+            }
+         })
+         .compact()
+         .uniqBy('email', 'surveyId')
+         // .each(({ surveyId, email, choice }) => {
+         .each(event => {
+            // Survey.updateOne(
+            //    {
+            //       id: surveyId,
+            //       recipients: {
+            //          $elemMatch: { email: email, responded: false },
+            //       },
+            //    },
+            //    {
+            //       $inc: { [choice]: 1 },
+            //       $set: { 'recipients.$.responded': true },
+            //    }
+            // ).exec();
+            console.log('event', event);
+         })
+         .value();
+
       res.send({});
    });
 
-   app.post('/api/surveys/webhooksX', (req, res) => {
+   // ORIG!!
+   app.post('/api/surveys/webhooks', (req, res) => {
+      console.log('req.body', req.body);
+
       const p = new Path('/api/surveys/:surveyId/:choice');
 
       _.chain(req.body) // process the incoming req body and chain on all steps
