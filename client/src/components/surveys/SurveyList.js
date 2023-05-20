@@ -6,14 +6,15 @@ class SurveyList extends Component {
    componentDidMount() {
       this.props.fetchSurveys();
    }
-   componentDidUpdate(state) {
-      console.log(state);
-   }
+
+   // componentDidUpdate(state) {
+   //    console.log(state);
+   // }
 
    renderSurveys() {
       const surveys = this.props.surveys;
       if (surveys.length) {
-         console.log('A', surveys);
+         // console.log('A', surveys);
          //  return surveys.map(survey => {
          return this.props.surveys.reverse().map(survey => {
             return (
@@ -27,11 +28,11 @@ class SurveyList extends Component {
                      </p>
                   </div>
                   <div className="card-action">
-                     <a>Yes: {survey.yes}</a>
-                     <a>No: {survey.no}</a>
+                     <span className="votes">Yes: {survey.yes}</span>
+                     <span className="votes">No: {survey.no}</span>
                      <button
                         onClick={() => {
-                           console.log('Del');
+                           // console.log('Del');
                            this.props.deleteSurvey(survey._id);
                         }}
                      >
@@ -50,7 +51,7 @@ class SurveyList extends Component {
 }
 
 function mapStateToProps(state) {
-   console.log('state', state);
+   // console.log('state', state);
    return { surveys: state.surveys };
 }
 
