@@ -7,15 +7,9 @@ class SurveyList extends Component {
       this.props.fetchSurveys();
    }
 
-   // componentDidUpdate(state) {
-   //    console.log(state);
-   // }
-
    renderSurveys() {
       const surveys = this.props.surveys;
       if (surveys.length) {
-         // console.log('A', surveys);
-         //  return surveys.map(survey => {
          return this.props.surveys.reverse().map(survey => {
             return (
                <div className="card blue-grey darken-1" key={survey._id}>
@@ -32,7 +26,6 @@ class SurveyList extends Component {
                      <span className="votes">No: {survey.no}</span>
                      <button
                         onClick={() => {
-                           // console.log('Del');
                            this.props.deleteSurvey(survey._id);
                         }}
                      >
@@ -42,16 +35,22 @@ class SurveyList extends Component {
                </div>
             );
          });
+         // } else {
+         //    return (
+         //       // No existing surveys
+         //       <h5 className="center">
+         //          You've got credit! Click (+) below to create a survey.
+         //       </h5>
+         //    );
       }
    }
 
    render() {
-      return <div>{this.renderSurveys()}</div>;
+      return <div style={{ paddingTop: '25px' }}>{this.renderSurveys()}</div>;
    }
 }
 
 function mapStateToProps(state) {
-   // console.log('state', state);
    return { surveys: state.surveys };
 }
 

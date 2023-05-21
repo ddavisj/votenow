@@ -32,7 +32,7 @@ class SurveyForm extends Component {
                </Link>
                <button
                   type="submit"
-                  className="green btn-flat right white-text"
+                  className="my-green-bg btn-flat right white-text"
                >
                   Next
                   <i className="material-icons right">chevron_right</i>

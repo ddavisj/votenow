@@ -4,3 +4,16 @@
    transition: color 0.3s ease;
    text-transform: uppercase;
 }
+
+.my-green-bg {
+   background-color: #34ae72;
+}
+
+.my-purple-bg {
+   background-color: #9c27b0;
+}
+
+.btn-floating:hover,
+.btn:hover {
+   background-color: #673ab7;
+}

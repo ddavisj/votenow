@@ -34,7 +34,7 @@ class Dashboard extends Component {
                <div className="fixed-action-btn">
                   <Link
                      to="/surveys/new"
-                     className="btn-floating btn-large green"
+                     className="btn-floating btn-large my-purple-bg"
                   >
                      <i className="material-icons">add</i>
                   </Link>

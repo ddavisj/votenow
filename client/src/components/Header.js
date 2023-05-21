@@ -31,7 +31,7 @@ class Header extends Component {
 
    render() {
       return (
-         <nav style={{ backgroundColor: 'green' }}>
+         <nav className="my-green-bg">
             <div className="nav-wrapper">
                <Link
                   style={{ paddingLeft: '10px' }}

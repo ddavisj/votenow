@@ -14,7 +14,10 @@ class Payments extends Component {
             stripeKey={process.env.REACT_APP_STRIPE_KEY}
          >
             <span style={{ display: 'flex' }}>
-               <button className="btn" style={{ height: 'fit-content' }}>
+               <button
+                  className="btn my-purple-bg"
+                  style={{ height: 'fit-content' }}
+               >
                   <i className="material-icons">credit_card</i>
                </button>
             </span>
