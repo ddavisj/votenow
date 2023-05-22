@@ -16,8 +16,8 @@ const Landing = () => {
             />
          </picture>
          <h4>
-            Quickly and easily send one-click surveys to thousands of
-            subscribers and track their votes and engagement.
+            Quickly and easily send one-click surveys to subscribers and track
+            their votes and engagement.
          </h4>
       </div>
    );
