@@ -3,7 +3,6 @@ import React from 'react';
 const Landing = () => {
    return (
       <div style={{ textAlign: 'center' }}>
-         <h1>VoteNow</h1>
          <h3>One click community voting</h3>
          <picture>
             <source srcSet="./images/yesorno.webp" />

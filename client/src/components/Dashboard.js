@@ -11,6 +11,7 @@ class Dashboard extends Component {
          if (this.props.auth.credits < 1) {
             return (
                <h4 style={{ textAlign: 'center', paddingTop: '20px' }}>
+                  <p>Welcome to VoteNow!</p>
                   <span
                      style={{ textDecoration: 'underline', cursor: 'pointer' }}
                      onClick={() => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import Payments from './Payments';
 
 class Header extends Component {
@@ -11,7 +12,12 @@ class Header extends Component {
          case false: // not logged in
             return (
                <li>
-                  <a href="/auth/google">Login with Google</a>
+                  <a href="/auth/google" style={{ display: 'flex' }}>
+                     <i class="material-icons" style={{ paddingRight: '10px' }}>
+                        login
+                     </i>
+                     <span>Login with Google</span>
+                  </a>
                </li>
             );
          default: // otherwise, we're in!
@@ -23,7 +29,12 @@ class Header extends Component {
                   ${this.props.auth.credits}
                </li>,
                <li key="3">
-                  <a href="/api/logout">Logout</a>
+                  <a href="/api/logout" style={{ display: 'flex' }}>
+                     <i class="material-icons" style={{ paddingRight: '10px' }}>
+                        logout
+                     </i>
+                     <span>Logout</span>
+                  </a>
                </li>,
             ];
       }
