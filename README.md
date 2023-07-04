@@ -14,7 +14,7 @@ This app makes use of a number of key APIs:
 
 ## SendGrid
 
-SendGrid is used to send emails. It authenticates an admin email, and all group emails are then sent from this email address via SendGrid.
+SendGrid is used to send emails. All group emails/surveys are sent from single admin email address via SendGrid.
 
 ## Google Auth
 
@@ -32,15 +32,15 @@ All user and survey data is stored in MongoDB, via Cloud Atlas.
 
 ## React
 
-Library used to build the app front-end.
+Used to build the app front-end.
 
 ## Redux
 
-Manages state and actions to send data to and from Mongo via Redux actions.
+Manages app state, Redux actions enable sending of data to and from Mongo via Redux actions.
 
 ## MongoDB and Mongoose
 
-MongooseJS is an Object Data Modeling (ODM) library that allows Node to communicate with Mongo.
+MongooseJS is an Object Data Modeling (ODM) library, essentially a layer over the Node server that allows it to communicate with Mongo to store and access information.
 
 # Additional Node Modules and Add-ons
 
