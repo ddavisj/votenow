@@ -1,5 +1,4 @@
 // SFR shows users their form inputs for review
-import React from 'react';
 import { connect } from 'react-redux';
 
 import formFields from './formFields';

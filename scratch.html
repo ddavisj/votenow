@@ -1,64 +1,25 @@
 <script>
 
-// import React from 'react';
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import SurveyList from './surveys/SurveyList';
-// import * as actions from '../actions';
-import { connect } from 'react-redux';
+// Tried to convert to functional comp.. Didn't work!
 
-const Dashboard = ({ auth }) => {
-   const showLink = () => {
-      if (auth) {
-         if (auth.credits < 1) {
-            return (
-               <h4 style={{ textAlign: 'center', paddingTop: '20px' }}>
-                  <p>Welcome to VoteNow!</p>
-                  <span
-                     style={{ textDecoration: 'underline', cursor: 'pointer' }}
-                     onClick={() => {
-                        document.querySelector('button').click();
-                     }}
-                  >
-                     Buy credits
-                  </span>{' '}
-                  to send a survey
-               </h4>
-            );
-         }
-      }
-      return;
-   };
+import { useState } from 'react';
 
-   const showAddButton = () => {
-      if (auth) {
-         if (auth.credits) {
-            return (
-               <div className="fixed-action-btn">
-                  <Link
-                     to="/surveys/new"
-                     className="btn-floating btn-large my-purple-bg"
-                  >
-                     <i className="material-icons">add</i>
-                  </Link>
-               </div>
-            );
-         }
-      }
-      return;
-   };
+const App = ({ fetchUser }) => {
+   useEffect(() => {
+      fetchUser();
+   }, []);
 
    return (
-      <div>
-         {showLink()}
-         <SurveyList />
-         {showAddButton()}
-      </div>
+      <BrowserRouter>
+         <Header />
+         <div className="container">
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/surveys" component={Dashboard} />
+            <Route exact path="/funkify" component={Funkify} />
+            <Route path="/surveys/new" component={SurveyNew} />
+         </div>
+      </BrowserRouter>
    );
 };
 
-const mapStateToProps = ({ auth }) => {
-   return { auth };
-};
-
-export default connect(mapStateToProps)(Dashboard);
+export default connect(null, actions)(App);

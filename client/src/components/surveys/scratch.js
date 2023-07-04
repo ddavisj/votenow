@@ -1,11 +1,35 @@
-const surveys = this.props.surveys;
+// SurveyNew shows SurveyForm and SurveyFormReview
+import { useState } from 'react';
+import { reduxForm } from 'redux-form';
+import SurveyForm from './SurveyForm';
+import SurveyFormReview from './SurveyFormReview';
 
-const newDatedSurveys = surveys.map(item => {
-   const newDate = new Date(item.date);
-   return {
-      ...item,
-      dateSent: newDate,
+const SurveyNew = () => {
+   const [state, setState] = useState({ showFormReview: false });
+
+   const renderContent = () => {
+      if (state.showFormReview) {
+         return (
+            <SurveyFormReview
+               onCancel={() => {
+                  setState({ showFormReview: false });
+               }}
+            />
+         );
+      }
+
+      return (
+         <SurveyForm
+            onSurveySubmit={() => {
+               setState({ showFormReview: true });
+            }}
+         />
+      );
    };
-});
 
-newDatedSurveys.sort((a, b) => b.dateSent - a.dateSent);
+   return <div>{renderContent()}</div>;
+};
+
+export default reduxForm({
+   form: 'surveyForm',
+})(SurveyNew);

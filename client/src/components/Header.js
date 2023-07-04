@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Payments from './Payments';
 
-class Header extends Component {
-   renderContent() {
-      switch (this.props.auth) {
+const Header = ({ auth }) => {
+   const renderContent = () => {
+      switch (auth) {
          case null: // show nothing
             return;
          case false: // not logged in
@@ -29,7 +28,7 @@ class Header extends Component {
                   <Payments />
                </li>,
                <li key="2" style={{ margin: '0 10px' }}>
-                  ${this.props.auth.credits}
+                  ${auth.credits}
                </li>,
                <li key="3">
                   <a href="/api/logout" style={{ display: 'flex' }}>
@@ -44,25 +43,23 @@ class Header extends Component {
                </li>,
             ];
       }
-   }
+   };
 
-   render() {
-      return (
-         <nav className="my-green-bg">
-            <div className="nav-wrapper">
-               <Link
-                  style={{ paddingLeft: '10px' }}
-                  to={this.props.auth ? '/surveys' : '/'}
-                  className="left brand-logo"
-               >
-                  VoteNow
-               </Link>
-               <ul className="right">{this.renderContent()}</ul>
-            </div>
-         </nav>
-      );
-   }
-}
+   return (
+      <nav className="my-green-bg">
+         <div className="nav-wrapper">
+            <Link
+               style={{ paddingLeft: '10px' }}
+               to={auth ? '/surveys' : '/'}
+               className="left brand-logo"
+            >
+               VoteNow
+            </Link>
+            <ul className="right">{renderContent()}</ul>
+         </div>
+      </nav>
+   );
+};
 
 function mapStateToProps({ auth }) {
    return { auth };

@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchSurveys, deleteSurvey } from '../../actions';
 
-class SurveyList extends Component {
-   componentDidMount() {
-      this.props.fetchSurveys();
-   }
+const SurveyList = ({ fetchSurveys, surveys, deleteSurvey }) => {
+   useEffect(() => {
+      fetchSurveys();
+   }, []);
 
-   renderSurveys() {
-      const surveys = this.props.surveys;
-
+   const renderSurveys = () => {
       // Convert date to sortable format, e.g. "dateSent": "2023-07-03T08:53:11.757Z" to: 1688374391757
       const dateMapped = surveys.map(survey => {
          return {
@@ -37,7 +35,7 @@ class SurveyList extends Component {
                      <span className="votes">No: {survey.no}</span>
                      <button
                         onClick={() => {
-                           this.props.deleteSurvey(survey._id);
+                           deleteSurvey(survey._id);
                         }}
                      >
                         Delete
@@ -46,20 +44,11 @@ class SurveyList extends Component {
                </div>
             );
          });
-         // } else {
-         //    return (
-         //       // No existing surveys
-         //       <h5 className="center">
-         //          You've got credit! Click (+) below to create a survey.
-         //       </h5>
-         //    );
       }
-   }
+   };
 
-   render() {
-      return <div style={{ paddingTop: '25px' }}>{this.renderSurveys()}</div>;
-   }
-}
+   return <div style={{ paddingTop: '25px' }}>{renderSurveys()}</div>;
+};
 
 function mapStateToProps(state) {
    return { surveys: state.surveys };
