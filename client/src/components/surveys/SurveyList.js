@@ -9,8 +9,19 @@ class SurveyList extends Component {
 
    renderSurveys() {
       const surveys = this.props.surveys;
+
+      // Convert date to sortable format, e.g. "dateSent": "2023-07-03T08:53:11.757Z" to: 1688374391757
+      const dateMapped = surveys.map(survey => {
+         return {
+            ...survey,
+            dateSent: Date.parse(survey.dateSent),
+         };
+      });
+
+      dateMapped.sort((a, b) => b.dateSent - a.dateSent); // Sort in descending order
+
       if (surveys.length) {
-         return this.props.surveys.reverse().map(survey => {
+         return dateMapped.map(survey => {
             return (
                <div className="card blue-grey darken-1" key={survey._id}>
                   <div className="card-content white-text">

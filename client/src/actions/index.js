@@ -30,14 +30,4 @@ export const deleteSurvey = id => async dispatch => {
    await axios.delete(`/api/surveys/delete/${id}`);
 
    dispatch({ type: DELETE_SURVEY, payload: id });
-   // await axios.delete(`/api/surveys/delete/${id}`);
-   // history.push('/surveys');
 };
-
-// For comparison:
-// export const deleteBook = id => async dispatch => {
-//    await myBooks.delete(`/books/${id}`);
-
-//    dispatch({ type: DELETE_BOOK, payload: id });
-//    history.push('/');
-// };

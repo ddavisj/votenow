@@ -1,12 +1,64 @@
 <script>
 
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
-// `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
-   
-const charge = await stripe.charges.create({
-   amount: 2000,
-   currency: 'usd',
-   source: 'tok_visa',
-   description:
-      'My First Test Charge (created for API docs at https://www.stripe.com/docs/api)',
-});
+// import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import SurveyList from './surveys/SurveyList';
+// import * as actions from '../actions';
+import { connect } from 'react-redux';
+
+const Dashboard = ({ auth }) => {
+   const showLink = () => {
+      if (auth) {
+         if (auth.credits < 1) {
+            return (
+               <h4 style={{ textAlign: 'center', paddingTop: '20px' }}>
+                  <p>Welcome to VoteNow!</p>
+                  <span
+                     style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                     onClick={() => {
+                        document.querySelector('button').click();
+                     }}
+                  >
+                     Buy credits
+                  </span>{' '}
+                  to send a survey
+               </h4>
+            );
+         }
+      }
+      return;
+   };
+
+   const showAddButton = () => {
+      if (auth) {
+         if (auth.credits) {
+            return (
+               <div className="fixed-action-btn">
+                  <Link
+                     to="/surveys/new"
+                     className="btn-floating btn-large my-purple-bg"
+                  >
+                     <i className="material-icons">add</i>
+                  </Link>
+               </div>
+            );
+         }
+      }
+      return;
+   };
+
+   return (
+      <div>
+         {showLink()}
+         <SurveyList />
+         {showAddButton()}
+      </div>
+   );
+};
+
+const mapStateToProps = ({ auth }) => {
+   return { auth };
+};
+
+export default connect(mapStateToProps)(Dashboard);

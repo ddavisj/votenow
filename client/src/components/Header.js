@@ -13,7 +13,10 @@ class Header extends Component {
             return (
                <li>
                   <a href="/auth/google" style={{ display: 'flex' }}>
-                     <i class="material-icons" style={{ paddingRight: '10px' }}>
+                     <i
+                        className="material-icons"
+                        style={{ paddingRight: '10px' }}
+                     >
                         login
                      </i>
                      <span>Login with Google</span>
@@ -30,7 +33,10 @@ class Header extends Component {
                </li>,
                <li key="3">
                   <a href="/api/logout" style={{ display: 'flex' }}>
-                     <i class="material-icons" style={{ paddingRight: '10px' }}>
+                     <i
+                        className="material-icons"
+                        style={{ paddingRight: '10px' }}
+                     >
                         logout
                      </i>
                      <span>Logout</span>

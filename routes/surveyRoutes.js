@@ -16,7 +16,7 @@ module.exports = app => {
       // res.send(`Deleted! ${req.params.id}`);
       // console.log(`Route - deleting: ${req.params.id}`);
       // res.redirect('/surveys');
-      // res.send([]);
+      res.send([]);
    });
 
    app.get('/api/surveys', requireLogin, async (req, res) => {

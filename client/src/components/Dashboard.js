@@ -20,7 +20,7 @@ class Dashboard extends Component {
                   >
                      Buy credits
                   </span>{' '}
-                  to send your first survey!
+                  to send a survey
                </h4>
             );
          }
