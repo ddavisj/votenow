@@ -1,14 +1,12 @@
 # Introduction
 
-This demo app was adapted from an email sending app built within a full-stack course, and is built with a MERN stack: MongoDB, Express, React and Node.
+This demo app was adapted from an email sending app built within a full-stack course. It's built with a MERN stack: MongoDB, Express, React and Node.
 
-The app allows paid users to send group emails to a user base and obtain feedback on a question that they pose to users.
+The app allows paid users to send group emails to a user base and obtain feedback on a question that they pose to users. It features a number of API integrations: Google OAuth allows users to securely sign in without having to enter a password, Stripe enables users to pay to add credit to their account so they can send out surveys, SendGrid facilitates email sending and enables click-tracking, and Mongo Cloud Atlas securely stores user and survey data in the cloud.
 
-It features a number of API integrations: Google OAuth allows users to securely sign in without having to enter a password, Stripe enables users to pay to add credit to their account so they can send out surveys, SendGrid facilitates email sending and enables click-tracking and Mongo Cloud Atlas securely stores user and survey data in the cloud.
+Users sign in, add credit and then create a survey to be sent out to an email list. When recipients click a link in the email, they are redirected to a page on the VoteNow website. Clicks are tracked via the user email and ID, users can only vote once per survey to prevent duplicate tracking and 'cheating'. Survey creators can also view the number of clicks on each survey.
 
-When recipients receive an email, they click a link in the email and this directs them to a page on our website. Clicks are tracked via the user email and ID, users can only vote once per survey to prevent duplicate tracking and "cheating". Paid users can then view the number of clicks on each survey to get feedback from their target audience.
-
-The site is hosted on Heroku.
+This app site is hosted on Heroku.
 
 # APIs
 
@@ -16,7 +14,7 @@ This app makes use of a number of key APIs:
 
 ## SendGrid
 
-SendGrid is used to send emails. It authenticates an admin email, and all group emails are then sent from this email address via SendGrid.
+SendGrid is used to send emails. All group emails/surveys are sent from single admin email address via SendGrid.
 
 ## Google Auth
 
@@ -34,15 +32,15 @@ All user and survey data is stored in MongoDB, via Cloud Atlas.
 
 ## React
 
-Library used to build the app front-end.
+Used to build the app front-end.
 
 ## Redux
 
-Manages state and actions to send data to and from Mongo via Redux actions.
+Manages app state, Redux actions enable sending of data to and from Mongo via Redux actions.
 
 ## MongoDB and Mongoose
 
-MongooseJS is an Object Data Modeling (ODM) library that allows Node to communicate with Mongo.
+MongooseJS is an Object Data Modeling (ODM) library, essentially a layer over the Node server that allows it to communicate with Mongo to store and access information.
 
 # Additional Node Modules and Add-ons
 
