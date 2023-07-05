@@ -5,7 +5,8 @@ const Landing = () => {
       <div style={{ textAlign: 'center' }}>
          <h3>One click community voting</h3>
          <picture>
-            <source srcSet="./images/yesorno.webp" />
+            <source srcSet="./images/yesorno.webp" type="image/webp" />
+            <source srcSet="./images/yesorno.jpg" type="image/jpeg" />
             <img
                alt="Yes or no"
                style={{
